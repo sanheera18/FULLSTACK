@@ -1,0 +1,31 @@
+graph TD
+    subgraph Frontend["Frontend Client (React + Vite)"]
+        UI["User Interface (React Comps)"]
+        Router["Client Routing (React Router)"]
+        State["State Management (React Cont)"]
+        Axios["HTTP Client (Axios)"]
+        UI --> Router
+        UI --> State
+        UI --> Axios
+    end
+
+    API((HTTP<br/>/ REST API))
+
+    Axios -->|Requests JSON| API
+
+    subgraph Backend["Backend API Server (Node.js)"]
+        Express["Express Routing"]
+        Auth["Authentication Middleware"]
+        Logic["Business Logic & Controllers"]
+        Mongoose["Data Modeling (Mongoose)"]
+        Express --> Auth
+        Auth --> Logic
+        Logic --> Mongoose
+    end
+
+    API --> Express
+    Express --> API
+
+    DB[("MongoDB (In-Memory Database)")]
+    Mongoose -->|Queries / Mutations| DB
+    DB -->|Data| Mongoose

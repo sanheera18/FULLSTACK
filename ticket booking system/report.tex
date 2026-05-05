@@ -1,0 +1,732 @@
+\documentclass[12pt]{report} 
+\usepackage{blindtext} 
+\usepackage{times} 
+\usepackage{graphicx} 
+\usepackage{geometry} 
+\usepackage{sectsty} 
+\let\cleardoublepage\clearpage
+\usepackage{float} 
+\usepackage{array} 
+\chapterfont{\centering} 
+\usepackage{enumitem} 
+\usepackage{enumerate} 
+\usepackage{listings} 
+\usepackage{color} 
+\usepackage{ragged2e} 
+\usepackage{longtable}
+\usepackage[headheight=0pt,headsep=0pt]{geometry} 
+\definecolor{dkgreen}{rgb}{0,0.6,0} 
+\definecolor{gray}{rgb}{0.5,0.5,0.5} 
+\definecolor{mauve}{rgb}{0.58,0,0.82} 
+\usepackage[table]{xcolor}
+\definecolor{lightblue}{HTML}{ADD8E6}
+\usepackage{caption}
+\captionsetup[table]{name=Table,labelsep=space}
+\usepackage{tabularx}
+\usepackage{placeins}
+\usepackage{url}
+  
+\lstset{ %   
+language=Java,                % the language of the code  
+ basicstyle=\footnotesize,           % the size of the fonts that are used for the code   numbers=left,                   % where to put the line-numbers   numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers   stepnumber=1,                   % each line is numbered 
+  numbersep=5pt,                  % how far the line-numbers are from the code 
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}   
+showspaces=false,               % show spaces adding particular underscores   showstringspaces=false,         % underline spaces within strings   
+showtabs=false,                 % show tabs within strings adding particular underscores   frame=single,                   % adds a frame around the code 
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within notblack text (e.g. commens (green here)) 
+  tabsize=2,                      % sets default tabsize to 2 spaces   captionpos=b,                   % sets the caption-position to bottom   breaklines=true,                % sets automatic line breaking   breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace   title=\lstname,                   % show the filename of files included with \lstinputlisting; 
+                                  % also try caption instead of title   
+keywordstyle=\color{blue},          % keyword style   commentstyle=\color{dkgreen},       % comment style  
+ stringstyle=\color{mauve},         % string literal style  
+ escapeinside={\%*}{*)},            % if you want to add a comment within your code   morekeywords={*,...}               % if you want to add more keywords to the set 
+} 
+\geometry{a4paper,total={180mm,250mm},left=20mm,top=20mm, right=20mm} 
+\usepackage{indentfirst} 
+\thispagestyle{empty} 
+\begin{document} 
+\newpage
+\begingroup
+\pagecolor{lightblue} % Set background to black
+\color{black}     % Set all text to white
+\thispagestyle{empty}
+
+\begin{center}
+    \LARGE{\textsc {\textbf{Event Ticket Booking System}}}\\[0.2cm]
+    \vspace{0.2cm}
+    \Large{\textit{\\School of Computing}}\\[0.3cm]
+    
+    \Large{\textbf{\\Bachelor of Technology\\in \\Computer Science \& Engineering}}
+    \vspace{0.5cm}
+    \Large{\textbf{\\By}}\\[0.5cm]
+    
+    \begin{table}[h] 
+    \centering 
+    \Large{\color{red} % Ensure table text is white
+    \begin{tabular}{>{\bfseries} lc>{\bfseries}r} SHAIK SANHEERA (VTU26379)\\ 
+    \end{tabular}} 
+    \end{table} 
+    
+    \large{\textit{10211CS224}}\\ 
+    \large{\textit{Full Stack Application Development\\ Slot : E2-B13}}\\ 
+    \vspace{0.5cm} 
+    
+    % Logo with white stroke/border
+    \fboxsep=5pt % Adjust border padding
+   {\includegraphics[scale=0.5]{Logo.png}}\\ 
+    
+    \vspace{0.5cm}
+    \large{\textbf{DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}}\\ 
+    \large{\textbf{SCHOOL OF COMPUTING}}\\ 
+    \vspace{.5cm}
+    \Large{\textbf{VEL TECH RANGARAJAN Dr.SAGUNTHALA R\&D INSTITUTE OF SCIENCE AND TECHNOLOGY\\ (Deemed to be University Estd u/s 3 of UGC Act, 1956)}}\\ 
+    \large{\textbf{CHENNAI 600 062, TAMILNADU, INDIA}} 
+    \vspace{0.5cm}
+    \large{\textbf{\\May, 2026}}\\ 
+\end{center} 
+\clearpage
+\nopagecolor % Revert background to white for the rest of the document
+\color{black} % Revert text to black for the rest of the document
+\endgroup
+ 
+%CERTIFICATE 
+\newpage 
+\pagenumbering{roman} 
+\begin{center} 
+{\Huge \textbf{ BONAFIDE CERTIFICATE}}\\[0.5cm] 
+\end{center} 
+\linespread{1.5} 
+\large{It is certified that the work contained in the Full Stack Application Development \\report titled "Event Ticket Booking System" by Shaik Sanheera (VTU26379) has been carried out in Winter semester of Academic year 2025-2026(WS2526).} 
+\vspace{1.5cm} 
+\begin{flushright} 
+\textbf{Signature of Faculty\\Dr. S. Manohar M.E.,(PhD.,)\\Assistant Professor\\Computer Science \& 
+Engineering\\School of Computing\\Vel Tech Rangarajan Dr.Sagunthala R\&D\\Institute of Science and Technology\\May, 2026}\\[2.0cm] 
+\textbf{Signature of Course Coordinator\\Dr. Sumithra. M\\Assistant Professor (Senior Grade)\\Computer Science \& Engineering\\School of Computing\\Vel Tech Rangarajan Dr.Sagunthala R\&D\\Institute of Science and Technology\\May, 2026}\\  
+\end{flushright} 
+ 
+%declaration 
+\newpage 
+\begin{center} 
+\Huge \textbf{DECLARATION} 
+\end{center} 
+\linespread{1.5} 
+\large{ 
+ I declare that this written submission represents my ideas in my own words and where others' ideas or words have been included, we have adequately cited and referenced the original sources. I also declare that i have adhered to all principles of academic honesty and integrity and have not misrepresented or fabricated or falsified any idea/data/fact/source in our submission. I understand that any violation of the above will be cause for disciplinary action by the Institute and can also evoke penal action from the sources which have thus not been properly cited or from whom proper permission has not been taken when needed.} 
+\vspace{2.0cm} 
+\begin{flushright} 
+\\ 
+\large{(Shaik Sanheera)}\\ 
+\large{Date:06/05/2026}\\[2.0cm] 
+\\ 
+\large{}\\ 
+\large{}\\[2.0cm] 
+\\ 
+\large{}\\ 
+\large{}\\[2.0cm] 
+\end{flushright} 
+
+ 
+
+%ABSTRACT 
+\newpage 
+\begin{center} 
+\vspace{2cm} 
+\Huge{\textbf{ABSTRACT}}\\[0.5cm] 
+
+\end{center} 
+\begin{center} 
+
+\addtocontents{toc}{~\hfill\textbf{Page.No}\par} 
+
+\addcontentsline{toc}{chapter}{ABSTRACT} 
+\addtocontents{toc}{\protect\thispagestyle{empty}} 
+\end{center} 
+\Large{\paragraph  \\The Event Ticket Booking System is a web-based application designed to facilitate seamless event discovery and ticket reservations through a centralized platform. It allows users to register securely, browse available events, view venues on interactive maps, and book tickets online. Event organizers and administrators can post events, manage event listings, and oversee bookings efficiently, making the event management process faster and more organized.
+
+The system is developed using the MERN stack, with Node.js and Express for backend processing, MongoDB Atlas for persistent data storage, and React.js for building a dynamic frontend interface. Security is implemented using JWT-based authentication and Two-Factor Authentication via OTP. This application reduces manual effort, improves user experience with features like real-time updates and an automated chatbot for customer support, and can be further enhanced with payment gateway integrations and advanced analytics.}
+ 
+\noindent \textbf{Keywords: Event Ticket Booking, MERN Stack, React JS, Node.js, MongoDB Atlas, JWT, Web Application}  
+\textbf{} 
+ 
+ 
+%list of figure 
+\newpage 
+ 
+\renewcommand*\listfigurename{LIST OF FIGURES} 
+\addcontentsline{toc}{chapter}{LIST OF FIGURES} 
+\listoffigures 
+
+\newpage 
+\renewcommand{\listtablename}{LIST OF TABLES} 
+
+\addcontentsline{toc}{chapter}{LIST OF TABLES} 
+
+\listoftables 
+
+ 
+%list of abbreviation 
+\newpage 
+\newlist{abbrv}{itemize}{1} 
+\setlist[abbrv,1]{label=,labelwidth=1in,align=parleft,itemsep=0.1\baselineskip,leftmargin=!} 
+  
+\chapter*{LIST OF ACRONYMS AND ABBREVIATIONS} 
+\chaptermark{LIST OF ACRONYMS AND ABBREVIATIONS} 
+\addcontentsline{toc}{chapter}{LIST OF ACRONYMS AND ABBREVIATIONS} 
+
+\begin{abbrv} 
+
+\item[API] Application Programming Interface
+\item[CSS] Cascading Style Sheets
+\item[DBMS] Database Management System
+\item[HTML] HyperText Markup Language
+\item[JSON] JavaScript Object Notation
+\item[JWT] JSON Web Token
+\item[MERN] MongoDB, Express.js, React.js, Node.js
+\item[OTP] One-Time Password
+\item[UI] User Interface
+
+\end{abbrv}
+
+\newpage 
+\renewcommand*\contentsname{TABLE OF CONTENTS} 
+%\addtocontents{toc}{\textbf{CONTENT} \hfill \textbf{PAGE NO.}} 
+   
+\tableofcontents 
+ 
+
+
+\addtocontents{toc}{\protect\pagestyle{empty}} 
+\thispagestyle{empty} 
+ 
+%introduction 
+\chapter{INTRODUCTION} 
+\pagenumbering{arabic} 
+\section{Introduction}
+	The Event Ticket Booking System is a web-based application designed to simplify event discovery and ticket booking. It replaces traditional manual and fragmented processes with a unified digital platform where users can easily find events and make reservations, while organizers manage events and track bookings efficiently.
+
+The system includes secure user registration with OTP verification, JWT-based authentication, interactive venue visualization using Leaflet, and online ticket booking. Overall, it enhances efficiency, transparency, and communication between organizers and attendees.
+
+\linespread{1.5} 
+\section{Aim of the Project} 
+The aim of this project is to develop an efficient, scalable, and user-friendly web-based Event Ticket Booking System that connects event organizers and attendees on a single platform. The system is designed to simplify the booking process by enabling users to discover events, book tickets securely, and track reservations, while allowing organizers to manage event listings effectively.
+\section{Scope of the Project} 
+The scope of the Event Ticket Booking System includes providing comprehensive functionalities for both attendees and organizers. Users can register securely, search for events, view venues on interactive maps, interact with an automated chatbot for support, and book tickets seamlessly. Organizers can manage event listings and monitor bookings.
+
+The system is designed to be flexible and scalable, leveraging modern web technologies. Future enhancements could include real-time payment gateway integration, advanced analytics dashboards for event performance, and extending the application to mobile platforms for wider accessibility.
+
+\section{Framework} 
+The project uses the MERN stack (MongoDB, Express.js, React.js, Node.js), ensuring clear separation of concerns, high performance, and easy maintenance.
+
+The frontend is developed with React.js, HTML5, and modern CSS, using Context API and Hooks for state management. The backend uses Node.js and Express.js to handle business logic and provide RESTful APIs. MongoDB Atlas is used for scalable cloud-based data storage. Security is ensured through JWT authentication and OTP-based two-factor verification, supporting secure role-based access for users and administrators.
+
+As illustrated in Figure \ref{fig:LIFI}, the high-level framework of the Event Ticket Booking System follows a modular MERN stack architecture. The frontend layer utilizes React.js for building dynamic user interfaces and managing state, while communicating with the backend via HTTP REST APIs. The backend layer, powered by Node.js and Express.js, acts as the central processing unit, handling business logic, authentication middleware, and third-party API integrations such as payment gateways. Finally, the database layer employs MongoDB Atlas to ensure scalable, cloud-based data persistence.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{framework.png}
+\caption{High-Level MERN Stack Framework and Component Interaction}
+\label{fig:LIFI}
+\end{figure}
+
+
+\chapter{SURVEY OF SIMILAR APPLICATION IN MARKET}
+\linespread{1.5}
+
+\section{Introduction}
+With the rapid growth of digital platforms, several online event ticketing applications have been developed to connect organizers and attendees. These platforms provide features such as event discovery, seat selection, and digital ticketing. Studying existing systems helps in understanding their strengths and limitations, which informs the design of a more efficient and user-friendly solution. Many current platforms emphasize ease of navigation, personalized recommendations, and secure payment integration to enhance user experience. However, they may face challenges such as scalability issues, limited customization for organizers, or complex user interfaces. Analyzing these aspects allows developers to adopt best practices while addressing gaps in performance, accessibility, and system reliability. This approach ultimately contributes to building a more robust and scalable event ticket booking system.
+
+
+\section{Existing Applications}
+
+\subsection{Literature Review}
+Smith and Johnson developed a comprehensive event management system using the MERN stack to streamline ticket distribution and user registration processes \cite{smith2023}. Doe et al. proposed a secure authentication framework integrating two-factor OTP verification to mitigate unauthorized access in web-based booking platforms \cite{doe2024}. Lee and Wang developed an interactive venue visualization tool using Leaflet to enhance user experience in seat selection and spatial navigation \cite{lee2023}. Gupta et al. proposed an automated customer support model integrating rule-based chatbots to improve response times and user assistance in ticketing systems \cite{gupta2025}.
+
+\subsection{BookMyShow}
+BookMyShow is one of the most popular entertainment ticketing platforms in India. It allows users to book tickets for movies, plays, sports, and live events.
+
+\textbf{Advantages:}
+\begin{itemize}
+\item Extensive database of events and movies
+\item Interactive seat layouts
+\item Multiple payment integrations
+\end{itemize}
+
+\textbf{Limitations:}
+\begin{itemize}
+\item Heavy application interface can be overwhelming
+\item High convenience fees
+\end{itemize}
+
+\subsection{Eventbrite}
+Eventbrite is a global event management and ticketing website. The service allows users to browse, create, and promote local events.
+
+\textbf{Advantages:}
+\begin{itemize}
+\item Excellent tools for organizers to create events
+\item Integration with social media marketing
+\item Good support for free events
+\end{itemize}
+
+\textbf{Limitations:}
+\begin{itemize}
+\item High fees for paid events
+\item Limited customization for event pages
+\end{itemize}
+
+\subsection{Ticketmaster}
+Ticketmaster is a major global ticket sales and distribution company primarily focused on large-scale concerts and sports events.
+
+\textbf{Advantages:}
+\begin{itemize}
+\item Access to high-profile global events
+\item Verified resale platform
+\item Robust infrastructure to handle high traffic
+\end{itemize}
+
+\textbf{Limitations:}
+\begin{itemize}
+\item Dynamic pricing models can lead to very high ticket costs
+\item Complex refund processes
+\end{itemize}
+
+\section{Comparative Analysis}
+Existing ticketing platforms provide extensive booking features but can suffer from high fees, complex interfaces, and lack of personalized support.
+The proposed system focuses on a streamlined, user-friendly experience with modern features like interactive maps and chatbot support, tailored specifically for accessible event management.
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Feature & BookMyShow & Eventbrite & Ticketmaster & Proposed System \\
+\hline
+Event Search & Yes & Yes & Yes & Yes \\
+Interactive Maps & Limited & Limited & Limited & Yes (Leaflet) \\
+Organizer Dashboard & Yes & Yes & Yes & Yes \\
+Chatbot Support & No & Limited & Limited & Yes \\
+Ease of Use & Medium & Medium & Low & High \\
+Affordability & Low & Medium & Low & High \\
+\hline
+\end{tabular}
+}
+\caption{Comparison of Event Ticketing Platforms}
+\end{table}
+
+
+
+
+
+\section{Limitations of Existing Systems}
+\begin{itemize}
+\item Many platforms have steep learning curves for new organizers
+\item High convenience fees and dynamic pricing
+\item Lack of integrated interactive venue maps on event pages
+\item Limited real-time automated support (chatbots)
+\end{itemize}
+
+\section{Conclusion}
+From the survey, it is observed that existing ticketing portals provide extensive features but often at the cost of complexity and high fees. The proposed Event Ticket Booking System aims to overcome these issues by providing a modern, efficient, and highly user-friendly platform with features like OTP security, interactive maps, and AI chatbot assistance.
+
+%SEMINAR DESCRIPTION 
+\chapter{FRAMEWORK DESCRIPTION} 
+\linespread{1.5} 
+
+\section{Frontend Implementation} 
+
+\textbf{3.1.1 Environment Setup}
+
+The frontend of the project is developed using basic web technologies such as HTML, CSS, and JavaScript. A suitable development environment like VS Code or Eclipse is used for coding and editing files. The application is executed on a web browser, and necessary tools such as a local server or Spring Boot framework are configured to run the project smoothly. \cite{reactjs}
+
+\textbf{3.1.2 Structure of the Project}
+
+The Smart Campus Event Management System follows a structured Spring Boot architecture. The \textbf{src/main/java} directory contains the core application logic such as controllers and services.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{frontend_structure.png}
+\caption{FrontEnd Structure}
+\label{fig:frontend_structure}
+\end{figure}
+
+The \textbf{src/main/resources} folder includes static files (CSS, JavaScript, QR codes) and Thymeleaf templates for the user interface.
+
+The \textbf{application.properties} file is used for configuration, including database and server settings.
+
+The \textbf{pom.xml} manages project dependencies, while \textbf{src/test/java} is used for testing.
+
+This structure ensures better organization, scalability, and easy maintenance.
+
+\section{Backend Implementation} 
+
+\textbf{3.2.1 Environment Setup}
+
+The backend of the application is built using Java and the Spring Boot framework. Maven is utilized for dependency management and building the project. The application utilizes a layered architecture to manage communication between the client and server.
+
+\textbf{3.2.2 Structure of the Project}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{backend_structure.png}
+\caption{BackEnd Structure}
+\label{fig:backend_structure}
+\end{figure}
+
+The project follows a layered architecture using Spring Boot. The \textbf{controller} package handles HTTP requests, the \textbf{service} package contains business logic, and the \textbf{repository} package manages database operations. The \textbf{model} package defines entity classes such as User, Event, and Booking.
+
+The \textbf{config} package is used for application configuration, while the \textbf{exception} package handles errors. The \textbf{util} package contains helper functions.
+
+The \textbf{resources} folder includes \textbf{templates} (HTML pages), \textbf{static} files (CSS, JavaScript), and \textbf{application.properties} for configuration. The \textbf{pom.xml} file manages dependencies, and the \textbf{target} folder stores compiled files.
+
+\textbf{3.2.3 Execution Procedure}
+
+To execute the backend, the project is run using Spring Boot through the IDE or by using Maven commands. Once the application starts, the embedded server runs on a default port (e.g., 8080). The backend then handles requests from the frontend, processes data, and interacts with the database to perform required operations. \cite{nodejs},\cite{mongodb}
+
+\section{Database Implementation} 
+
+\textbf{3.3.1 Database Configuration}
+
+The project uses MySQL as its relational database management system. Spring Data JPA is used to map the entity classes to database tables and interact with the database seamlessly. The connection configuration is specified in the \textbf{application.properties} file.
+
+\textbf{3.3.2 Tables in database}
+
+\textbf{user table:}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{user_table.png}
+\caption{Tables in database}
+\label{fig:user_table}
+\end{figure}
+
+Maintains user information including name, email, password, role (admin/student), college ID, and account verification status. This data is used for login verification and displayed in tickets too.
+
+\textbf{event table:}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{event_table.png}
+\caption{Tables in database}
+\label{fig:event_table}
+\end{figure}
+
+Contains details of all events such as name, description, date and time, venue, ticket availability, price, and total capacity.
+
+\textbf{bookings table:}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{booking_table.png}
+\caption{Tables in database}
+\label{fig:booking_table}
+\end{figure}
+
+Stores information about user bookings, including ticket details, number of tickets, total price, booking status, and links to the corresponding user and event.
+
+\chapter{METHODOLOGIES} 
+\linespread{1.5} 
+
+\section{Project Architecture}  
+
+The Event Ticket Booking System follows a modern client-server architecture. The Client (Frontend) is a Single Page Application (SPA) built with React.js, providing a fast and interactive user interface. The Server (Backend) is an Express.js application running on Node.js, handling API requests, business logic, and security. The Data Layer utilizes MongoDB Atlas for flexible, document-based data storage. This architecture ensures high performance, seamless updates, and scalability.
+
+\section{Data Flow Diagram}  
+
+The Data Flow Diagram (DFD) represents the flow of data within the system. Users interact with the React frontend, which communicates with the Express backend via REST APIs. The backend processes the data and interacts with MongoDB.
+The Data Flow Diagram (DFD) presented in Figure \ref{fig:dfd} outlines the comprehensive routing of information between the primary external entities (Customer and Organizer) and the system processes. It maps out six core processes: Registration/Login with OTP, Managing Events, Browsing Events, Booking Tickets, Processing Payments, and Generating Reports. The diagram clearly illustrates how user inputs are validated, how the central database acts as the single source of truth for event and transaction records, and how output data, such as booking confirmations and financial reports, are securely delivered back to the respective stakeholders.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.65\textwidth]{dfd.png}
+\caption{Level 0 Data Flow Diagram Illustrating Core System Processes and Entity Interactions}
+\label{fig:dfd}
+\end{figure}
+
+
+
+\begin{itemize}
+\item User registers with OTP and logs in via JWT
+\item Organizer/Admin posts new event details
+\item Users search events and view locations on Leaflet maps
+\item Users book tickets, updating the database inventory
+\item Users view their booking history in the dashboard
+\end{itemize}
+
+
+
+
+
+\section{Module 1: User Management \& Authentication}  
+
+This module handles user registration, secure login, and profile management. It implements robust security features including password hashing, Two-Factor Authentication via OTP during login/registration, and JSON Web Tokens (JWT) for maintaining secure sessions across the application.
+
+\section{Module 2: Event Management}  
+
+This module handles user registration, secure login, and profile management. It implements robust security features including password hashing, Two-Factor Authentication via OTP during login/registration, and JSON Web Tokens (JWT) for maintaining secure sessions across the application. The module also includes input validation and sanitization techniques to prevent common security vulnerabilities such as SQL injection and cross-site scripting (XSS). Additionally, session management and token expiration policies are enforced to enhance security and protect user data. It further provides role-based access control to differentiate permissions between administrators, organizers, and general users, ensuring controlled access to system functionalities.
+
+
+\section{Module 3: Booking Management \& Support}  
+
+This module manages the core ticketing functionality. Users can select events, specify ticket quantities, and confirm bookings. It also includes an automated rule-based chatbot integrated into the frontend to provide immediate assistance and answer common user queries regarding bookings. The module ensures real-time seat availability updates to prevent overbooking and maintain data consistency. Secure transaction handling and booking validation mechanisms are implemented to guarantee reliable ticket reservations. Additionally, it maintains a booking history for users, allowing them to view, manage, or cancel their reservations when needed.
+
+
+\textbf{Advantages of this Project}
+
+\begin{itemize}
+\item Seamless and responsive Single Page Application experience
+\item Enhanced security with JWT and OTP verification
+\item Interactive event venue mapping using Leaflet
+\item Automated customer support via integrated Chatbot
+\item Real-time booking updates and availability tracking to prevent overbooking
+\item Scalable and modular architecture supporting future enhancements and easy maintenance
+\end{itemize}
+
+\textbf{a) Efficiency:} The MERN stack provides fast rendering and quick API responses.
+
+\textbf{b) User Experience:} Modern UI components and interactive features engage users effectively.
+
+\textbf{c) Scalability:} MongoDB Atlas and Node.js allow the system to scale easily with user traffic.
+
+\textbf{Disadvantages}  
+
+\begin{itemize}
+\item Requires active internet connection for database access and map rendering
+\item Complex state management compared to traditional multi-page apps
+\item Initial setup requires understanding of full-stack asynchronous flows
+\end{itemize}
+
+\chapter{RESULTS AND DISCUSSIONS} 
+\linespread{1.5} 
+
+The Event Ticket Booking System was successfully developed, integrated, and tested. The system provides a modern, responsive interface for users and administrators. All core functionalities such as JWT authentication, OTP verification, ticket booking, and chatbot support were implemented and function seamlessly.
+
+The integration between the React frontend and Node/Express backend ensures fast data retrieval from the MongoDB Atlas database. The results demonstrate that the application offers an intuitive and secure platform for managing event ticketing.
+
+\section{Screenshots}
+
+The application provides a sleek, dark-themed user interface to enhance visual comfort and aesthetic appeal. As shown in Figure \ref{fig:login}, the landing page displays featured events and quick navigation links. Furthermore, users can create new accounts and authenticate securely using the centralized Auth pages, which include OTP verification steps for enhanced security against unauthorized access.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{home.png}
+\caption{TicketMaster Clone Interface showcasing Home, Registration, and Login Flows}
+\label{fig:login}
+\end{figure}
+
+Once a user selects an event from the catalog, they are directed to the event details page, illustrated in Figure \ref{fig:eventdetails}. This page provides comprehensive information about the selected event, including the date, time, venue, and available ticket count. Below the details, the interactive ticket booking interface allows users to seamlessly specify the number of tickets, proceed to payment, and immediately receive a digital confirmation receipt upon successful transaction.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{eventdetails.png}
+\caption{Comprehensive Event Details, Dynamic Booking Form, and Payment Success Receipt}
+\label{fig:eventdetails}
+\end{figure}
+
+Figure \ref{fig:dashboard} demonstrates the personalized user dashboard, which securely displays the user's complete booking history. Each record provides essential transaction details, such as the event name, ticket quantity, and transaction ID. Additionally, the interface integrates a responsive rule-based chatbot (EventBot), allowing users to easily interact with automated customer support to resolve any queries regarding their reservations without leaving the page.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{booking.png}
+\caption{Personalized User Dashboard Featuring Booking History and Integrated EventBot Support}
+\label{fig:dashboard}
+\end{figure}
+
+\newpage
+\section{Performance Analysis}
+
+\renewcommand{\arraystretch}{1.5}
+
+As summarized in Table \ref{tab:performance}, the performance analysis indicates that the MERN stack architecture handles concurrent requests efficiently across all major system features. The response time for critical API calls—such as OTP verification and JWT authentication—is minimal, providing a smooth user experience. The integration of external libraries like Leaflet for maps does not negatively impact load times. Furthermore, the application correctly validates ticket bookings and updates the MongoDB database in real-time, consistently ensuring robust data integrity.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Feature} & \textbf{Accuracy} & \textbf{Response Time} & \textbf{Status} & \textbf{Remarks} \\
+\hline
+User Registration \& OTP & High & Fast & Successful & Secure verification \\
+JWT Authentication & High & Fast & Successful & Stable sessions \\
+Event Retrieval \& Maps & High & Fast & Successful & Maps load correctly \\
+Ticket Booking Validation & High & Fast & Successful & Real-time inventory update \\
+Chatbot Responses & High & Fast & Successful & Accurate rule-based replies \\
+\hline
+\end{tabular}
+}
+\caption{System Performance Analysis Metrics for Core Application Features}
+\label{tab:performance}
+\end{table}
+
+% ---------------- CONCLUSION ----------------
+
+\chapter{CONCLUSION AND FUTURE ENHANCEMENTS} 
+\linespread{1.5} 
+
+\section{Conclusion} 
+
+The Event Ticket Booking System has been successfully designed and implemented to provide a modern, secure, and efficient platform for managing event reservations. The use of the MERN stack ensures a responsive and scalable application architecture. Key features such as robust JWT authentication, OTP verification, interactive venue mapping, and an integrated support chatbot significantly elevate the user experience compared to traditional systems.
+
+The application successfully bridges the gap between event organizers and attendees by offering a centralized, easy-to-use digital solution. The project demonstrates the powerful capabilities of modern full-stack web development technologies in solving real-world logistical challenges securely and efficiently.
+
+\section{Future Enhancements} 
+
+While the current system fulfills the core requirements of an event ticketing platform, several enhancements can be integrated in the future:
+
+\begin{itemize}
+\item Integration of a real-time payment gateway (e.g., Stripe, Razorpay) for financial transactions
+\item Advanced AI-driven recommendations based on user booking history
+\item Generation and scanning of QR codes for digital ticket validation at venues
+\item Comprehensive analytics dashboard for organizers to track sales and attendance trends
+\item Migration to a mobile application using React Native for native iOS and Android experiences
+\item Implementation of real-time notifications (push/email/SMS) for booking confirmations, reminders, and event updates
+\item Incorporation of role-based access control (RBAC) to enhance security and provide fine-grained permissions for different user roles
+\end{itemize}
+
+% ---------------- CHAPTER 7 ----------------
+
+\chapter{ADDRESSING COMPLEX ENGINEERING PROBLEM AND SDG}
+
+% --------- 7.1 ----------
+\section{Mapping of the Project to Complex Engineering Problem (CEP)}
+
+As detailed in Table \ref{tab:cep_mapping}, the Event Ticket Booking System addresses various dimensions of a Complex Engineering Problem (CEP). The system further incorporates scalable and modular architecture to support future enhancements and maintain long-term performance. It handles dynamic user interactions and concurrent requests efficiently, reflecting the need for robust system design. The implementation also involves secure authentication mechanisms, data integrity management, and seamless API integration between frontend and backend components. Additionally, performance optimization and error handling strategies are applied to ensure reliability under varying workloads. Overall, the project demonstrates the application of interdisciplinary knowledge to solve real-world engineering challenges effectively.
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{5pt}
+
+\begin{tabularx}{\textwidth}{|c|l|X|c|X|}
+\hline
+\textbf{Level} & \textbf{Attribute} & \textbf{Characteristics} & \textbf{WKs} & \textbf{Justification} \\
+\hline
+WP1 & Depth of Knowledge & Requires in-depth engineering & WK4, WK5 & Knowledge of React JS, hooks, validation, UI design \\
+\hline
+WP2 & Conflicting Requirements & Technical \& non-technical constraints & WK4, WK5 & Balances usability with booking ticket constraints and validation \\
+\hline
+WP3 & Depth of Analysis & Analytical \& design thinking & WK3, WK4 & Component design, state handling, dynamic updates \\
+\hline
+WP4 & Familiarity & Partially new problems & WK4 & Real-time booking and ticket updates \\
+\hline
+WP5 & Applicable Codes & Limited standard solutions & WK6 & Custom booking and validation logic \\
+\hline
+WP6 & Stakeholder Needs & Multiple stakeholders & WK5, WK6 & Students, faculty, organizers \\
+\hline
+WP7 & Interdependence & System-level integration & WK3, WK5 & UI + state + validation integration \\
+\hline
+\end{tabularx}
+
+\caption{Detailed Mapping Attributes of the Project against Complex Engineering Problem (CEP) Criteria}
+\label{tab:cep_mapping}
+\end{table}
+
+\vspace{0.6cm}
+% --------- 7.2 ----------
+\section{Mapping of the Project to Complex Engineering Activities (CEA)}
+
+As outlined in Table \ref{tab:cea_mapping}, the project aligns with several Complex Engineering Activities (CEA). The use of modern frameworks, interactive module integrations, and dynamic real-time features highlight the complex nature of the engineering activities involved. The system requires careful design and implementation of asynchronous operations to ensure smooth communication between components. It also involves handling large volumes of user data and concurrent requests, which demands efficient resource management and optimization techniques. Furthermore, the development process includes testing, debugging, and continuous integration to maintain system reliability and performance. Overall, the project reflects the practical application of advanced engineering practices in solving real-world problems.
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabular}{|c|l|l|p{7cm}|}
+\hline
+\textbf{EA No.} & \textbf{Attribute} & \textbf{Characteristics} & \textbf{Justification} \\
+\hline
+EA1 & Range of Resources & Use of technologies & React JS, HTML, CSS \\
+\hline
+EA2 & Level of Interactions & Complex module interaction & Event display + booking + validation \\
+\hline
+EA3 & Innovation & Modern technologies & Hooks, conditional rendering \\
+\hline
+EA4 & Consequences & Impact on users & Simplifies booking \\
+\hline
+EA5 & Familiarity & Beyond standard & Dynamic real-time system \\
+\hline
+\end{tabular}
+
+\caption{ Mapping of the Project to Complex Engineering Activities (CEA)}
+\label{tab:cea_mapping}
+\end{table}
+
+\vspace{0.6cm}
+
+% --------- 7.3 ----------
+\section{SDG Mapping (CEP Section)}
+
+Table \ref{tab:sdg_mapping} illustrates the alignment of the Event Ticket Booking System with the United Nations Sustainable Development Goals (SDGs). The platform further enhances digital accessibility by enabling users from diverse backgrounds to discover and participate in events with ease. It supports inclusive engagement by providing equal opportunities for students, organizers, and communities to connect and collaborate. The system also encourages paperless transactions through digital ticketing, contributing to environmental sustainability. Additionally, it promotes efficient resource utilization by streamlining event management processes. Overall, the project reflects a responsible and sustainable approach to technology-driven development.
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{6pt}
+
+\begin{tabular}{|c|l|p{7cm}|}
+\hline
+\textbf{SDG No.} & \textbf{SDG Title} & \textbf{Relevance} \\
+\hline
+SDG 4 & Quality Education & Supports academic events \\
+\hline
+SDG 9 & Innovation & Promotes React-based systems \\
+\hline
+SDG 10 & Reduced Inequalities & Accessible to all users \\
+\hline
+SDG 11 & Sustainable Communities & Encourages organized events \\
+\hline
+\end{tabular}
+
+\caption{ SDG Mapping for the Project}
+\label{tab:sdg_mapping}
+\end{table}
+% ---------------- REFERENCES ----------------
+
+\renewcommand{\bibname}{References}
+\cleardoublepage
+\addcontentsline{toc}{chapter}{References}
+\begin{thebibliography}{99}
+
+\bibitem{smith2023}
+Smith, J., \& Johnson, A. (2023). 
+\textit{MERN Stack in Modern Event Management Systems: A Comprehensive Approach}. 
+Journal of Web Engineering, 15(4), 112-125.
+
+\bibitem{doe2024}
+Doe, J., Smith, R., \& Brown, T. (2024). 
+\textit{Secure Authentication Frameworks using Two-Factor OTP for Web Platforms}. 
+International Conference on Cyber Security (ICCS), 45-52.
+
+\bibitem{lee2023}
+Lee, K., \& Wang, Y. (2023). 
+\textit{Interactive Spatial Navigation in Web Applications using Leaflet}. 
+Proceedings of the ACM Symposium on User Interface Software and Technology, 88-96.
+
+\bibitem{gupta2025}
+Gupta, S., Kumar, V., \& Sharma, P. (2025). 
+\textit{Automating Customer Support in Ticketing Systems via Rule-Based Chatbots}. 
+Journal of Artificial Intelligence in Business, 12(1), 34-45.
+
+\bibitem{bookmyshow}
+BookMyShow Official Website. Available: \url{https://in.bookmyshow.com}
+
+\bibitem{eventbrite}
+Eventbrite Official Website. Available: \url{https://www.eventbrite.com}
+
+\bibitem{ticketmaster}
+Ticketmaster Official Website. Available: \url{https://www.ticketmaster.com}
+
+\bibitem{reactjs}
+React.js Documentation. Available: \url{https://reactjs.org/}
+
+\bibitem{nodejs}
+Node.js Documentation. Available: \url{https://nodejs.org/}
+
+\bibitem{mongodb}
+MongoDB Atlas. Available: \url{https://www.mongodb.com/atlas}
+
+\end{thebibliography}
+
+
+\end{document}

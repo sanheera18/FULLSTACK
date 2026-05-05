@@ -1,0 +1,21 @@
+flowchart TD
+    Start["User Visits Website"] --> Action{"Action"}
+    Action -- Browse --> ViewEvents["View Events List"]
+    Action -- Authenticate --> Login["Login / Register"]
+    Action -- View History --> ViewBookings["View My Bookings"]
+    
+    ViewEvents --> ClickEvent["Click on Event Details"]
+    
+    Login --> ViewBookings
+    ViewBookings --> ClickEvent
+    
+    ClickEvent --> IsLogged{"Is User Logged In?"}
+    IsLogged -- No --> Login
+    IsLogged -- Yes --> SelectTickets["Select Number of Tickets"]
+    
+    SelectTickets --> ReviewSummary["Review Booking Summary"]
+    ReviewSummary --> Payment["Proceed to Payment"]
+    
+    Payment <--> BackendAPI["Backend API: Generate Receipt"]
+    BackendAPI -- No --> Payment
+    BackendAPI --> Receipt["View Receipt Page"]
