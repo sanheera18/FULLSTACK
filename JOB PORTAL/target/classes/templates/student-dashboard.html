@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Student Dashboard - JobPortal')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/fragments :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="mb-0">Welcome, <span th:text="${user.name}">Student</span>!</h2>
+            <p class="text-muted">Manage your profile and track your applications.</p>
+        </div>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <div class="row">
+        <!-- Profile & Resume Section -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header py-3">
+                    <h5 class="mb-0">Your Profile</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Name:</strong> <span th:text="${user.name}">Name</span></p>
+                    <p><strong>Email:</strong> <span th:text="${user.email}">Email</span></p>
+                    
+                    <hr>
+                    
+                    <h6 class="fw-bold mb-3">Resume</h6>
+                    <div th:if="${user.resumeFileName != null}" class="mb-3">
+                        <div class="alert alert-info py-2 mb-2" style="background: rgba(167, 139, 250, 0.1); border-color: rgba(167, 139, 250, 0.2); color: var(--primary-accent);">
+                            <i class="bi bi-file-earmark-text"></i> 
+                            <a th:href="@{/download/resume/{filename}(filename=${user.resumeFileName})}" target="_blank" class="text-decoration-none fw-bold" style="color: var(--primary-accent);" th:text="${user.resumeFileName}">resume.pdf</a>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-premium w-100" onclick="document.getElementById('uploadForm').classList.toggle('d-none')">Update Resume</button>
+                    </div>
+                    
+                    <form id="uploadForm" th:action="@{/student/resume/upload}" method="post" enctype="multipart/form-data" th:class="${user.resumeFileName != null ? 'd-none mt-3' : 'mt-3'}">
+                        <div class="mb-3">
+                            <label for="file" class="form-label text-muted small" th:text="${user.resumeFileName != null ? 'Upload updated resume (PDF/DOCX)' : 'Upload your resume (PDF/DOCX)'}">Upload new resume (PDF/DOCX)</label>
+                            <input class="form-control form-control-sm" type="file" id="file" name="file" required>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-premium-primary w-100">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications Section -->
+        <div class="col-md-8 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">My Applications</h5>
+                    <span class="badge bg-primary rounded-pill" th:text="${totalApplications}">0</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Company</th>
+                                    <th>Applied On</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="app : ${applications}">
+                                    <td class="align-middle fw-bold">
+                                        <a th:href="@{/jobs/{id}(id=${app.job.id})}" th:text="${app.job.title}" class="text-decoration-none">Title</a>
+                                    </td>
+                                    <td class="align-middle" th:text="${app.job.employer.name}">Company</td>
+                                    <td class="align-middle" th:text="${#temporals.format(app.applicationDate, 'dd-MMM-yyyy')}">Date</td>
+                                    <td class="align-middle">
+                                        <span class="badge" 
+                                              th:classappend="${app.status == 'APPLIED' ? 'bg-secondary' : (app.status == 'SHORTLISTED' ? 'bg-success' : 'bg-danger')}"
+                                              th:text="${app.status}">Status</span>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(applications)}">
+                                    <td colspan="4" class="text-center py-4">
+                                        You haven't applied to any jobs yet. 
+                                        <a th:href="@{/jobs}">Browse Jobs</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+
+</body>
+</html>

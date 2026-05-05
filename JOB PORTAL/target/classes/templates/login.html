@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Login - JobPortal')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/fragments :: navbar}"></div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-header text-center py-3">
+                    <h4 class="mb-0">Welcome Back</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out.
+                    </div>
+                    <div th:if="${param.registered}" class="alert alert-success">
+                        Registration successful! Please login.
+                    </div>
+                    
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-premium-primary btn-lg">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a th:href="@{/register}">Create your account</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+
+</body>
+</html>

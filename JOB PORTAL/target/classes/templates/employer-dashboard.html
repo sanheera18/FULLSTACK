@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Employer Dashboard - JobPortal')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/fragments :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2 class="mb-0">Employer Dashboard</h2>
+            <p class="text-muted">Manage your job postings and applicants.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a th:href="@{/employer/jobs/new}" class="btn btn-premium-primary"><i class="bi bi-plus-circle"></i> Post New Job</a>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="card stat-card h-100">
+                <div class="stat-icon" style="background: rgba(167, 139, 250, 0.1); color: var(--primary-accent);">
+                    💼
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0 text-white" th:text="${totalJobs}">0</h3>
+                    <span class="text-muted-custom">Total Jobs Posted</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card stat-card h-100">
+                <div class="stat-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                    📄
+                </div>
+                <div>
+                    <h3 class="fw-bold mb-0 text-white" th:text="${totalApplications}">0</h3>
+                    <span class="text-muted-custom">Total Applications Received</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Jobs Section -->
+    <h4 class="mb-3">Your Job Postings</h4>
+    <div class="card shadow-sm mb-5">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Applications</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="job : ${jobs}">
+                            <td class="align-middle fw-bold">
+                                <a th:href="@{/jobs/{id}(id=${job.id})}" th:text="${job.title}" class="text-decoration-none">Title</a>
+                            </td>
+                            <td class="align-middle" th:text="${job.category}">Category</td>
+                            <td class="align-middle" th:text="${job.location}">Location</td>
+                            <td class="align-middle">
+                                <span class="badge bg-secondary rounded-pill" th:text="${job.applications.size()}">0</span>
+                            </td>
+                            <td class="align-middle">
+                                <form th:action="@{/employer/jobs/{id}/delete(id=${job.id})}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this job?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(jobs)}">
+                            <td colspan="5" class="text-center py-4">You haven't posted any jobs yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Applicants Section -->
+    <h4 class="mb-3">Recent Applications</h4>
+    <div class="card shadow-sm mb-4">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Applicant</th>
+                            <th>Job</th>
+                            <th>Applied Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="app : ${applications}">
+                            <td class="align-middle">
+                                <span class="fw-bold" th:text="${app.student.name}">Name</span>
+                                <br>
+                                <small class="text-muted" th:text="${app.student.email}">Email</small>
+                                <div th:if="${app.student.resumeFileName != null}" class="mt-1">
+                                    <a th:href="@{/download/resume/{filename}(filename=${app.student.resumeFileName})}" target="_blank" class="badge bg-info text-decoration-none">
+                                        View Resume
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="align-middle" th:text="${app.job.title}">Job Title</td>
+                            <td class="align-middle" th:text="${#temporals.format(app.applicationDate, 'dd-MMM-yyyy HH:mm')}">Date</td>
+                            <td class="align-middle">
+                                <span class="badge" 
+                                      th:classappend="${app.status == 'APPLIED' ? 'bg-secondary' : (app.status == 'SHORTLISTED' ? 'bg-success' : 'bg-danger')}"
+                                      th:text="${app.status}">Status</span>
+                            </td>
+                            <td class="align-middle">
+                                <form th:action="@{/employer/application/{id}/status(id=${app.id})}" method="post" class="d-inline">
+                                    <input type="hidden" name="status" value="SHORTLISTED">
+                                    <button type="submit" class="btn btn-sm btn-premium-success" th:disabled="${app.status == 'SHORTLISTED'}">Shortlist</button>
+                                </form>
+                                <form th:action="@{/employer/application/{id}/status(id=${app.id})}" method="post" class="d-inline">
+                                    <input type="hidden" name="status" value="REJECTED">
+                                    <button type="submit" class="btn btn-sm btn-premium-danger" th:disabled="${app.status == 'REJECTED'}">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(applications)}">
+                            <td colspan="5" class="text-center py-4">No applications received yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+
+</body>
+</html>

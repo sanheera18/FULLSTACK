@@ -1,0 +1,252 @@
+/* Premium Dark Theme */
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --primary-accent: #a78bfa; /* Lavender */
+    --primary-accent-hover: #c4b5fd;
+    --secondary-accent: #c084fc; /* Purple */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #10b981;
+    --danger: #ef4444;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at top right, rgba(167, 139, 250, 0.1), transparent 40%),
+                      radial-gradient(circle at bottom left, rgba(192, 132, 252, 0.1), transparent 40%);
+}
+
+/* Navbar */
+.navbar-custom {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-custom .navbar-brand {
+    color: var(--text-main) !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #a78bfa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--primary-accent-hover) !important;
+}
+
+/* Cards (Glassmorphism) */
+.card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    color: var(--text-main);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-header {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--card-border);
+    border-radius: 16px 16px 0 0 !important;
+    font-weight: 600;
+    color: var(--text-main);
+    padding: 1rem 1.5rem;
+}
+
+/* Buttons */
+.btn-premium-primary {
+    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+}
+
+.btn-premium-primary:hover {
+    opacity: 0.9;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+.btn-premium-success {
+    background: var(--success);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.btn-premium-success:hover {
+    opacity: 0.9;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+.btn-premium-danger {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.btn-premium-danger:hover {
+    opacity: 0.9;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+.btn-outline-premium {
+    background: transparent;
+    border: 1px solid var(--primary-accent);
+    color: var(--primary-accent);
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-premium:hover {
+    background: var(--primary-accent);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+}
+
+/* Forms */
+.form-control, .form-select {
+    background-color: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid var(--card-border) !important;
+    color: var(--text-main) !important;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    border-color: var(--primary-accent) !important;
+    box-shadow: 0 0 0 0.25rem rgba(167, 139, 250, 0.25) !important;
+    color: var(--text-main) !important;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-label {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Tables */
+.table {
+    color: var(--text-main);
+}
+
+.table-dark {
+    background-color: transparent;
+}
+
+.table th, .table td {
+    border-color: var(--card-border);
+    background-color: transparent !important;
+    vertical-align: middle;
+    color: var(--text-main) !important;
+}
+
+.table th {
+    color: var(--text-muted) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* Badges */
+.badge-premium {
+    background: rgba(167, 139, 250, 0.1);
+    color: var(--primary-accent);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+}
+
+.badge-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+/* Footer */
+footer {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--card-border);
+    color: var(--text-muted);
+    padding: 24px 0;
+    margin-top: auto;
+    text-align: center;
+    width: 100%;
+}
+
+/* Utilities */
+.text-muted-custom {
+    color: var(--text-muted) !important;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #a78bfa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--card-bg) !important;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 1.5rem;
+    background: rgba(167, 139, 250, 0.1);
+    color: var(--primary-accent);
+}

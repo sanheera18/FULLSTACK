@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Browse Jobs - JobPortal')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/fragments :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="mb-0">Browse Jobs</h2>
+        </div>
+        <div class="col-md-6">
+            <form th:action="@{/jobs}" method="get" class="d-flex">
+                <input type="text" name="keyword" class="form-control me-2" placeholder="Search by category or location..." th:value="${keyword}">
+                <button type="submit" class="btn btn-premium-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="job : ${jobs}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <span class="badge badge-premium mb-2" th:text="${job.category}">Category</span>
+                    <h5 class="card-title fw-bold" th:text="${job.title}">Job Title</h5>
+                    <h6 class="card-subtitle mb-3 text-muted" th:text="${job.employer.name}">Company Name</h6>
+                    <p class="card-text mb-1"><small><strong>Location:</strong> <span th:text="${job.location}">Location</span></small></p>
+                    <p class="card-text mb-1"><small><strong>Salary:</strong> <span th:text="${job.salary}">Salary</span></small></p>
+                    <p class="card-text mt-3 text-truncate" th:text="${job.description}">Description</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-3">
+                    <a th:href="@{/jobs/{id}(id=${job.id})}" class="btn btn-premium-primary w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12" th:if="${#lists.isEmpty(jobs)}">
+            <div class="alert alert-info text-center">
+                No jobs found matching your criteria.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/fragments :: head('Job Details - JobPortal')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/fragments :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-transparent py-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0 fw-bold" th:text="${job.title}">Job Title</h3>
+                        <span class="badge badge-premium" th:text="${job.category}">Category</span>
+                    </div>
+                    <p class="text-muted mb-0 mt-2" th:text="${job.employer.name}">Company Name</p>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <p class="mb-1"><i class="bi bi-geo-alt"></i> <strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
+                            <p class="mb-1"><i class="bi bi-cash"></i> <strong>Salary:</strong> <span th:text="${job.salary}">Salary</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-1"><i class="bi bi-tools"></i> <strong>Skills Required:</strong></p>
+                            <p th:text="${job.skillsRequired}">Skills</p>
+                        </div>
+                    </div>
+                    
+                    <h5 class="fw-bold mb-3">Job Description</h5>
+                    <p style="white-space: pre-wrap;" th:text="${job.description}">Description</p>
+                </div>
+                <div class="card-footer bg-transparent p-3" sec:authorize="hasRole('STUDENT')">
+                    <form th:action="@{/student/apply/{id}(id=${job.id})}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-premium-primary btn-lg w-100">Apply Now</button>
+                    </form>
+                </div>
+                <div class="card-footer bg-transparent p-3 text-center" sec:authorize="!isAuthenticated()">
+                    <p class="mb-0">Please <a th:href="@{/login}">login</a> as a student to apply.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+
+</body>
+</html>

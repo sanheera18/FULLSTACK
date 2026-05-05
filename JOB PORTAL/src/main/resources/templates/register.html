@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Create Your Account - JobPortal')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="~{fragments/fragments :: navbar}"></div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center py-3">
+                    <h4 class="mb-0">Create an Account</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                    
+                    <form th:action="@{/register}" th:object="${user}" method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" th:field="*{email}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" th:field="*{username}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" th:field="*{password}" required>
+                            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label d-block">I am a:</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="roleStudent" value="ROLE_STUDENT" th:field="*{role}" checked>
+                                <label class="form-check-label" for="roleStudent">Student / Job Seeker</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="roleEmployer" value="ROLE_EMPLOYER" th:field="*{role}">
+                                <label class="form-check-label" for="roleEmployer">Employer</label>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-premium-primary btn-lg">Create Your Account</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: footer}"></div>
+
+</body>
+</html>
